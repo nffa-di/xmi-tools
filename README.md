@@ -5,7 +5,7 @@ This repository provides an exporter of a snap-shot of a webgme project-tree int
 To use the plugin from this repository simply register the `XMIExporter` plugin on the root-node. To import the plugin into your own domain-repo invoke the following command (using [webgme-cli](https://github.com/webgme/webgme-cli)):
 
 ```
-webgme import plugin XMIExporter webgme/xmi-tools
+webgme import plugin XMIExporter nffa-di/xmi-tools
 ```
 
 which will install the head of the master.
