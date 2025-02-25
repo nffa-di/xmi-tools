@@ -480,7 +480,7 @@ define([
                 parentData = path2Data[core.getPath(parent)],
                 metaNode = core.getBaseType(node),
                 baseNode = core.getBase(node),
-                metaName = core.getAttribute(metaNode, 'name'),
+                metaName = metaNode === null ? "Library" : core.getAttribute(metaNode, 'name'),
                 containmentRel = CONTAINMENT_PREFIX + metaName,
                 nodeData = {
                     '@xsi:type': languageName + ':' + metaName
@@ -489,6 +489,15 @@ define([
                 validAttributeNames = core.getValidAttributeNames(node),
                 validSetNames = core.getValidSetNames(node),
                 promises = [];
+
+
+            if (parentData === undefined){
+                Q.all(promises)
+                    .then(deferred.resolve)
+                    .catch(deferred.reject);
+
+                return deferred.promise.nodeify(next);
+            }
 
             path2Data[core.getPath(node)] = nodeData;
 
